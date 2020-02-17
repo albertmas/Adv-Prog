@@ -1,4 +1,4 @@
-class Circle (circle: Point, radius: Int) {
+class Circle (circle: Point, var radius: Int) {
   def area() : Double = {
     math.Pi * radius * radius
   }
