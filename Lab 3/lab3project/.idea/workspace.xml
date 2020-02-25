@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eaedc492-eeca-4caf-b987-83e63825a192" name="Default Changelist" comment="" />
+    <list default="true" id="3169289a-bd53-46fe-a9f6-15e499816b40" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +23,7 @@
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="1" />
   </component>
-  <component name="ProjectId" id="1XyoFU34qAPvjXsWUhxDdXcNZVi" />
+  <component name="ProjectId" id="1YIKOSFvMCPWNFCeAgbvoToMtWc" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,12 +32,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="SbtLocalSettings">
     <option name="projectSyncType">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../Lab 2" value="PREVIEW" />
       </map>
     </option>
   </component>
@@ -46,26 +45,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eaedc492-eeca-4caf-b987-83e63825a192" name="Default Changelist" comment="" />
-      <created>1582027591114</created>
+      <changelist id="3169289a-bd53-46fe-a9f6-15e499816b40" name="Default Changelist" comment="" />
+      <created>1582624635667</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1582027591114</updated>
+      <updated>1582624635667</updated>
     </task>
     <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="361" y="72" key="#Notifications" timestamp="1582031909297">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="72" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1582031909297" />
-    <state x="277" y="56" key="SettingsEditor" timestamp="1582031976288">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1582031976288" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1582624588893">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1582624588893" />
   </component>
 </project>
