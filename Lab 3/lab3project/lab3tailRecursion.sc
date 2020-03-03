@@ -31,7 +31,7 @@ val len = listLengthFixed(list2)
 // Ex4
 def sum(ls: List[Int]): Int = {
   def sum_nested(ls: List[Int], sum: Int): Int = ls match {
-    case Nil => sum + ls.head
+    case Nil => sum
     case h::tail => sum_nested(ls.tail, sum + ls.head)
   }
   sum_nested(ls, 0)
@@ -43,6 +43,24 @@ val listSum1 = sum(list2)
 val listSum1Check = list2.sum
 
 // Ex5
+def power(value: Int, pow: Int): BigInt = {
+  def power_nested (value: BigInt, pow: Int, result: BigInt): BigInt = pow match {
+    case 1 => result
+    case _ => power_nested(value, pow - 1, result * value)
+  }
+  power_nested(value, pow, value)
+}
 
+val poweredVal = power(3, 3)
 
 // Ex6
+def fib(n: Int): Int = {
+  def fib_nested(n: Int, prev: Int, next: Int): Int = n match {
+    case 0 => prev
+    case 1 => next
+    case _ => fib_nested(n - 1, next, prev + next) // Calls again the function setting prev as the next value and next as the sum of prev and next. Counter is reduced
+  }
+  fib_nested(n, 0, 1)
+}
+
+val fibSix = fib(6)
