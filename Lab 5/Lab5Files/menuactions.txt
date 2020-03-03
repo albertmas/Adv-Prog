@@ -1,0 +1,9 @@
+
+  // *******************************************************************************************************************
+  // FUNCTIONS THAT INVOKE ACTION AND INTERACT WITH USER
+  // each of these functions accepts user input if required for an operation,
+  // invokes the relevant operation function and displays the results
+
+  def mnuShowPoints(f:() => Map[String, Int]) = {
+    f() foreach {case (x,y) => println(s"$x: $y")}
+  }

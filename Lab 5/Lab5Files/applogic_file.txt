@@ -1,0 +1,8 @@
+// *******************************************************************************************************************
+  // APPLICATION LOGIC
+
+  // read data from file
+  val mapdata = readFile("data.txt")
+  // print data to check it's been read in correctly
+  println(mapdata)
+

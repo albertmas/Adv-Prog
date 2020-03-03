@@ -1,0 +1,11 @@
+
+  // *******************************************************************************************************************
+  // OPERATION FUNCTIONS
+  // each of these performs the required operation on the data and returns
+  // the results to be displayed - does not interact with user
+
+  def currentPoints():Map[String,Int] = {
+    // sort map by value in descending order -
+    // see http://alvinalexander.com/scala/how-to-sort-map-in-scala-key-value-sortby-sortwith
+    ListMap(mapdata.toSeq.sortWith(_._2 > _._2):_*)
+  }

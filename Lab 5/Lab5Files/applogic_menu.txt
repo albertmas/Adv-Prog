@@ -1,0 +1,14 @@
+  // define menu options as a Map of actions
+  // for each menu item:
+  // key is an Int, the value that will be read from the input
+  // value is a function () => Boolean, i.e. no params and returns Boolean
+  val actionMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo)
+
+  // loop to read input and invoke menu option
+  // uses function readOption to show menu and read input
+  // uses function menu to invoke menu action
+  // will terminate if menu returns false
+  var opt = 0
+  do {
+    opt = readOption
+  } while (menu(opt))

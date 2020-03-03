@@ -1,0 +1,34 @@
+// *******************************************************************************************************************
+  // FUNCTIONS FOR MENU
+
+  // shows menu and reads input
+  def readOption: Int = {
+    println(
+      """|Please select one of the following:
+        |  1 - show points for all teams
+        |  2 - quit""".stripMargin)
+    readInt()
+  }
+
+  // invokes selected menu option
+  // finds corresponding function to invoke in action map using get
+  // pattern matching used as get returns an Option
+  def menu(option: Int): Boolean = {
+    actionMap.get(option) match {
+      case Some(f) => f()
+      case None =>
+        println("Sorry, that command is not recognized")
+        true
+    }
+  }
+
+  // handlers for menu options
+  def handleOne(): Boolean = {
+    mnuShowPoints(currentPoints)      // calls function mnuShowPoints, which invokes function currentPoints
+    true
+  }
+
+  def handleTwo(): Boolean = {
+    println("selected quit")         // returns false so loop terminates
+    false
+  }
