@@ -42,7 +42,12 @@ val listLast = last(list)
 // The last function stops working and would have to be changed
 
 // Ex9
-def penultimate(list: List[Int]): Int = {
-  // todo
+//def penultimate(list: List[Int]): Int = {
+//  // todo
+//}
+//val listPenultimate = penultimate(list)
+
+def reversed(list: List[Int]): List[Int] = {
+  list.foldLeft(List[Int]())((x, y) => y :: x)
 }
-val penultimate = last(list)
+val listReversed = reversed(list)
