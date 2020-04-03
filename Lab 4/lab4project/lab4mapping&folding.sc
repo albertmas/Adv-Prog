@@ -19,7 +19,7 @@ val listSum = sum(list)
 
 // Ex5
 def length(list: List[Int]): Int = {
-  list.foldLeft(0)((x, y) => x + 1)
+  list.foldLeft(0)((len, _) => len + 1)
 }
 val listLen = length(list)
 
@@ -31,7 +31,7 @@ val listAvg = average(list)
 
 // Ex7
 def last(list: List[Int]): Int = {
-  list.foldLeft(0)((x, y) => y)
+  list.foldLeft(0)((_, y) => y)
 }
 val listLast = last(list)
 
@@ -51,3 +51,8 @@ def reversed(list: List[Int]): List[Int] = {
   list.foldLeft(List[Int]())((x, y) => y :: x)
 }
 val listReversed = reversed(list)
+
+def distinct(list: List[Int]): List[Int] = {
+  list.foldLeft(List[Int]())((x, y) => y :: x)
+}
+val distinctElements = reversed(List(1,2,2,3,3,4,5))
