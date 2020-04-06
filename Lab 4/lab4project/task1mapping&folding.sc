@@ -43,7 +43,7 @@ val listLast = last(list)
 
 // Ex9
 //def penultimate(list: List[Int]): Int = {
-//  // todo
+//  // TODO
 //}
 //val listPenultimate = penultimate(list)
 
@@ -52,7 +52,7 @@ def reversed(list: List[Int]): List[Int] = {
 }
 val listReversed = reversed(list)
 
-def distinct(list: List[Int]): List[Int] = {
-  list.foldLeft(List[Int]())((x, y) => y :: x)
-}
-val distinctElements = reversed(List(1,2,2,3,3,4,5))
+//def distinct(list: List[Int]): List[Int] = {
+//  // TODO
+//}
+//val distinctElements = distinct(List(1,2,2,3,3,4,5))

@@ -2,9 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68a74874-be30-4cc4-b336-5d9d9c616724" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../Coursework/courseworkProject/src/Main.sc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task2maps.sc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/task3tupples&amp;zipping.sc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lab 5/lab5project/src/Task1.sc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Coursework/coursework.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab4mapping&amp;folding.sc" beforeDir="false" afterPath="$PROJECT_DIR$/lab4mapping&amp;folding.sc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab4project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/lab4project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab4mapping&amp;folding.sc" beforeDir="false" afterPath="$PROJECT_DIR$/task1mapping&amp;folding.sc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +42,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="SbtLocalSettings">
     <option name="projectSyncType">
@@ -63,6 +69,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="777" y="434" width="380" height="171" key="#com.intellij.framework.addSupport.AddSupportForSingleFrameworkDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585509914396" />
+    <state x="808" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1586194106900">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="808" y="409" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586194106900" />
+    <state x="762" y="183" key="SettingsEditor" timestamp="1586201663578">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="762" y="183" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586201663577" />
     <state x="581" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1585516686854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

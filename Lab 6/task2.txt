@@ -1,0 +1,25 @@
+def p = new Person()
+p.name = "Alice"
+p.password = "aSecret"
+
+// adding properties
+p.metaClass.age = 21
+
+Scanner input = new Scanner(System.in)
+print("new property name: ")
+while ((newPropName = input.next()) != "done") {
+    print("new property value: ")
+    newPropVal = input.next()
+    p.metaClass."${newPropName}" = newPropVal
+
+    print("new property name: ")
+}
+
+// add pretty print method dynamically as a closure
+p.metaClass.prettyPrint = {
+    println "Person object has following properties"
+    p.properties.each {
+        if (it.key != 'prettyPrint')
+            println " " + it.key + ": " + it.value
+    }
+}
