@@ -40,6 +40,7 @@ val ldn2 = airports.get("London") match {
   case None => "not found"
 }
 
+// Extra
 val airports2 = Map("GLA" -> "Glasgow", "TXL" -> "Berlin", "PIK" -> "Glasgow",
   "LAX" -> "Los Angeles")
 val value = "Berlin"
@@ -50,3 +51,10 @@ airports2.find(_._2==value).getOrElse(default)._1
 
 // Iterating
 // Ex1
+for ((k, v) <- airports) {
+  println(s"Code - $v")
+}
+
+for ((k, v) <- airports) {
+  println(s"City:$k - Code:$v")
+}

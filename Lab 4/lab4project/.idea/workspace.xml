@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68a74874-be30-4cc4-b336-5d9d9c616724" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../Coursework/courseworkProject/src/Main.sc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task2maps.sc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/task3tupples&amp;zipping.sc" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../Lab 5/lab5project/src/Task1.sc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Coursework/coursework.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lab4mapping&amp;folding.sc" beforeDir="false" afterPath="$PROJECT_DIR$/task1mapping&amp;folding.sc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task2maps.sc" beforeDir="false" afterPath="$PROJECT_DIR$/task2maps.sc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task3tupples&amp;zipping.sc" beforeDir="false" afterPath="$PROJECT_DIR$/task3tupples&amp;zipping.sc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,10 +72,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="762" y="183" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1586201663577" />
-    <state x="581" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1585516686854">
+    <state x="581" y="300" key="com.intellij.ide.util.TipDialog" timestamp="1586269686831">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1583836846306" />
-    <state x="581" y="300" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1585516686854" />
+    <state x="581" y="300" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586269686831" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1586273384119">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1586273384119" />
   </component>
 </project>
