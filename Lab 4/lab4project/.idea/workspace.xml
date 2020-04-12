@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68a74874-be30-4cc4-b336-5d9d9c616724" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Lab 5/lab5project/src/Task1.sc" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lab 5/lab5project/src/Task1.sc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Lab 5/lab5project/src/MyApp.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Lab 5/lab5project/src/Task2.sc" beforeDir="false" afterPath="$PROJECT_DIR$/../../Lab 5/lab5project/src/Task2.sc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

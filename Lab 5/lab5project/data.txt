@@ -1,0 +1,18 @@
+Bayern Munich, 24
+RB Leipzig, 24
+Hoffenheim, 20
+Hertha BSC, 20
+Dortmund, 18
+FC Köln, 18
+Eintracht Frankfurt, 18
+Bayer Leverkusen, 16
+SC Freiburg, 15
+Mainz 05, 14
+Borussia Mönchengladbach, 12
+FC Augsburg, 11
+Wolfsburg, 9
+Schalke 04, 8
+Darmstadt 98, 8
+Werder Bremen, 7
+Ingolstadt, 2
+Hamburger SV, 2
