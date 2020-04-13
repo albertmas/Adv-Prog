@@ -12,8 +12,8 @@ object MyApp extends App {
   val mapData = readFile("cyclingroutedata.txt")
 
   // Map of menu operations
-  val menuMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo, 3 -> handleThree, 4 -> handleTwoFour,
-    5 -> handleFive, 6 -> handleSix, 7 -> handleSeven)
+  val menuMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo, 3 -> handleThree, /*4 -> handleTwoFour,
+    5 -> handleFive, 6 -> handleSix, */7 -> handleSeven)
 
   // Loops menu after each operation until app finishes
   var opt = 0
@@ -34,7 +34,7 @@ object MyApp extends App {
         val routeName = splitLine.head     // get route name
         val routeStages: ListBuffer[(Int, String, Float)] = ListBuffer()
         splitLine.drop(1) foreach {     // loop list, skipping first element (name)
-          case x => val stage = x.split(":").map(_.trim).toList     // split elements at :
+          x => val stage = x.split(":").map(_.trim).toList     // split elements at :
             routeStages.addOne((stage.apply(0).toInt, stage.apply(1), stage.apply(2).toFloat))     // add to tuple list
         }
 
@@ -86,6 +86,11 @@ object MyApp extends App {
     true
   }
 
+  def handleThree(): Boolean = {
+    mnuShowAvgDistanceAndStages(avgDistanceAndStages)
+    true
+  }
+
   def handleSeven(): Boolean = {
     println("selected quit")         // returns false so loop terminates
     false
@@ -94,22 +99,65 @@ object MyApp extends App {
   // *******************************************************************************************************************
   // FUNCTIONS THAT INVOKE ACTION AND INTERACT WITH USER
 
+  // Operation 1
   def mnuShowRouteValues(f:() => Map[String, Int]) = { //TODO
     f() foreach {case (x,y) => println(s"$x: $y")}
   }
 
-  def mnuShowTotalDistanceAndStages(f:() => Map[String, (Float, Int)]) = { //TODO
-    f() foreach {case (x,y) => println(s"$x has ${y._2} stages and a total distance of ${y._1} Km")}
+  // Operation 2
+  def mnuShowTotalDistanceAndStages(f:() => Map[String, (Float, Int)]) = {
+    f() foreach {case (x,y) => println(s"$x has ${y._2} stages and a total distance of ${floatPrecision(y._1, 2)} Km")}
+  }
+
+  // Operation 3
+  def mnuShowAvgDistanceAndStages(f:() => (Float, Float)) = { //TODO
+    val (avgDist, avgStages) = f()
+    println(s"There is an average of ${floatPrecision(avgStages, 1)} stages and ${floatPrecision(avgDist, 2)} Km in the routes")
   }
 
   // *******************************************************************************************************************
   // OPERATION FUNCTIONS
 
   def routeValues() = {
-    
+
   }
 
   def totalDistanceAndStages(): Map[String, (Float, Int)] = {
+    var distAndStages: Map[String, (Float, Int)] = Map()
+    mapData foreach {
+      case (k, v) =>
+        var distance: Float = 0
+        var stages: Int = 0
 
+        v foreach {
+          case (i, s, f) =>
+            distance += f
+            stages += 1
+        }
+
+        distAndStages = distAndStages ++ Map(k -> (distance, stages))
+    }
+
+    distAndStages
+  }
+
+  def avgDistanceAndStages(): (Float, Float) = {
+    var totalDist: Float = 0
+    var totalStages: Float = 0
+    val mapTotal = totalDistanceAndStages()
+
+    mapTotal foreach {
+      case (_, (dist, stages)) =>
+        totalDist += dist
+        totalStages += stages
+    }
+
+    (totalDist/mapTotal.size, totalStages/mapTotal.size)
+  }
+
+
+  // Useful functions
+  def floatPrecision(f: Float, p: Int): Float = {
+    BigDecimal(f).setScale(p, BigDecimal.RoundingMode.HALF_DOWN).toFloat
   }
 }
