@@ -12,11 +12,15 @@ object MyApp extends App {
   val mapData = readFile("cyclingroutedata.txt")
   var mapPersonalisedRoutes: Map[String, String] = Map()
 
-  // Map of menu operations
+  // Map of personalised routes list menu operations
+  val persListMenuMap = Map[Int, () => Boolean](1 -> handlePersOne, 2 -> handlePersTwo,
+    3 -> handlePersThree, 4 -> handlePersFour, 5 -> handlePersFive)
+
+  // Map of main menu operations
   val menuMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo, 3 -> handleThree, 4 -> handleFour,
     5 -> handleFive, 6 -> handleSix, 7 -> handleSeven)
 
-  // Loops menu after each operation until app finishes
+  // Loops main menu after each operation until app finishes
   var opt = 0
   do {
     opt = readOption
@@ -121,10 +125,6 @@ object MyApp extends App {
   // *******************************************************************************************************************
   // PERSONALISED LIST MENU
 
-  // Map of menu operations
-  val persListMenuMap = Map[Int, () => Boolean](1 -> handlePersOne, 2 -> handlePersTwo,
-    3 -> handlePersThree, 4 -> handlePersFour, 5 -> handlePersFive) //TODO fix this being nullptr
-
   def readPersonaliseOption: Int = {
     println(
       """
@@ -140,20 +140,9 @@ object MyApp extends App {
 
   // Reads input
   def menuPersonalisedList(option: Int): Boolean = {
-//    persListMenuMap.get(option) match {
-//      case Some(f) => f()
-//      case None =>
-//        println("Sorry, that command is not recognized")
-//        true
-//    }
-
-    option match {
-      case 1 => handlePersOne()
-      case 2 => handlePersTwo()
-      case 3 => handlePersThree()
-      case 4 => handlePersFour()
-      case 5 => handlePersFive()
-      case _ =>
+    persListMenuMap.get(option) match {
+      case Some(f) => f()
+      case None =>
         println("Sorry, that command is not recognized")
         true
     }
@@ -173,7 +162,7 @@ object MyApp extends App {
     true
   }
   def handlePersFour(): Boolean = {
-    mnuShowClearRoutePersList()
+    clearRoutePersList()
     true
   }
   def handlePersFive(): Boolean = {
@@ -206,7 +195,7 @@ object MyApp extends App {
 
   // Operation 5
   def mnuShowRouteDetails(f:(String) => String): Unit = {
-    val routeDetails = f(readLine()) //TODO display available routes and make user insert number instead of name
+    val routeDetails = f(readLine())
 
     if (routeDetails != ("")) {
       println(routeDetails)
@@ -217,7 +206,6 @@ object MyApp extends App {
   }
 
   // Operation 6
-
   def mnuShowPersonalisingMenu(): Unit = {
     // Loops personalising menu after each operation until app finishes
     var opt = 0
@@ -247,11 +235,6 @@ object MyApp extends App {
       println("Route correctly removed from personalised route list!")
     else
       println("Incorrect route name!")
-  }
-
-  def mnuShowClearRoutePersList(): Unit = {
-    mapPersonalisedRoutes = Map()
-    println("Personalised route list cleared!")
   }
 
 
@@ -361,6 +344,7 @@ object MyApp extends App {
 
   def clearRoutePersList(): Unit = {
     mapPersonalisedRoutes = Map()
+    println("Personalised route list cleared!")
   }
 
 
