@@ -78,7 +78,8 @@ object MyApp extends App {
 
   // Handlers for menu options
   def handleOne(): Boolean = {
-    //mnuShowRouteValues() // TODO
+    println("\nPRINTING ROUTES DETAILS")
+    mnuShowAllRoutesValues(routeValues)
     true
   }
 
@@ -121,28 +122,28 @@ object MyApp extends App {
   // FUNCTIONS THAT INVOKE ACTION AND INTERACT WITH USER
 
   // Operation 1
-  def mnuShowRouteValues(f:() => Map[String, Int]) = { //TODO
-    f() foreach {case (x,y) => println(s"$x: $y")}
+  def mnuShowAllRoutesValues(f:() => List[String]): Unit = {
+    f() foreach {println(_)}
   }
 
   // Operation 2
-  def mnuShowTotalDistanceAndStages(f:() => Map[String, (Float, Int)]) = {
+  def mnuShowTotalDistanceAndStages(f:() => Map[String, (Float, Int)]): Unit = {
     f() foreach {case (x,y) => println(s"$x has ${y._2} stages and a total distance of ${floatPrecision(y._1, 2)} Km")}
   }
 
   // Operation 3
-  def mnuShowAvgDistanceAndStages(f:() => (Float, Float)) = {
+  def mnuShowAvgDistanceAndStages(f:() => (Float, Float)): Unit = {
     val (avgDist, avgStages) = f()
     println(s"There is an average of ${floatPrecision(avgStages, 1)} stages and ${floatPrecision(avgDist, 2)} Km in the routes")
   }
 
   // Operation 4
-  def mnuShowStagesSorted(f:() => Map[String, Float]) = {
+  def mnuShowStagesSorted(f:() => Map[String, Float]): Unit = {
     f() foreach {case (x,y) => println(s"$x: total distance of ${floatPrecision(y, 2)} Km")}
   }
 
   // Operation 5
-  def mnuShowRouteDetails(f:(String) => String) = {
+  def mnuShowRouteDetails(f:(String) => String): Unit = {
     val routeDetails = f(readLine()) //TODO display available routes and make user insert number instead of name
 
     if (routeDetails != ("")) {
@@ -153,11 +154,22 @@ object MyApp extends App {
     }
   }
 
+  // Operation 6
+  def mnuShowPersonalisedList(): Unit = {
+    //TODO
+  }
+
   // *******************************************************************************************************************
   // OPERATION FUNCTIONS
 
-  def routeValues() = {
+  def routeValues(): List[String] = {
+    var routesList: ListBuffer[String] = ListBuffer()
+    mapData foreach {
+      case (k, v) =>
+        routesList += getRouteDetails(k)
+    }
 
+    routesList.toList
   }
 
   def totalDistanceAndStages(): Map[String, (Float, Int)] = {
