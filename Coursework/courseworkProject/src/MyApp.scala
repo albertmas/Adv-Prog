@@ -10,6 +10,7 @@ object MyApp extends App {
 
   // Read data from file
   val mapData = readFile("cyclingroutedata.txt")
+  var mapPersonalisedRoutes: Map[String, String] = Map()
 
   // Map of menu operations
   val menuMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo, 3 -> handleThree, 4 -> handleFour,
@@ -108,14 +109,75 @@ object MyApp extends App {
   }
 
   def handleSix(): Boolean = {
-    print("Routes>")
-    // TODO
+    mnuShowPersonalisingMenu()
     true
   }
 
   def handleSeven(): Boolean = {
     println("selected quit")         // returns false so loop terminates
     false
+  }
+
+  // *******************************************************************************************************************
+  // PERSONALISED LIST MENU
+
+  // Map of menu operations
+  val persListMenuMap = Map[Int, () => Boolean](1 -> handlePersOne, 2 -> handlePersTwo,
+    3 -> handlePersThree, 4 -> handlePersFour, 5 -> handlePersFive) //TODO fix this being nullptr
+
+  def readPersonaliseOption: Int = {
+    println(
+      """
+        |Please select one of the following:
+        |  1 - show list
+        |  2 - add route
+        |  3 - remove route
+        |  4 - clear list
+        |  5 - go back""".stripMargin)
+    print("\nSelection>")
+    readInt()
+  }
+
+  // Reads input
+  def menuPersonalisedList(option: Int): Boolean = {
+//    persListMenuMap.get(option) match {
+//      case Some(f) => f()
+//      case None =>
+//        println("Sorry, that command is not recognized")
+//        true
+//    }
+
+    option match {
+      case 1 => handlePersOne()
+      case 2 => handlePersTwo()
+      case 3 => handlePersThree()
+      case 4 => handlePersFour()
+      case 5 => handlePersFive()
+      case _ =>
+        println("Sorry, that command is not recognized")
+        true
+    }
+  }
+
+  // Handlers for personalised list menu options
+  def handlePersOne(): Boolean = {
+    mnuShowPersonalisedRoutes()
+    true
+  }
+  def handlePersTwo(): Boolean = {
+    mnuShowAddRouteToPersList(addRouteToPersList)
+    true
+  }
+  def handlePersThree(): Boolean = {
+    mnuShowRemoveRouteFromPersList(removeRouteFromPersList)
+    true
+  }
+  def handlePersFour(): Boolean = {
+    mnuShowClearRoutePersList()
+    true
+  }
+  def handlePersFive(): Boolean = {
+    false       // returns false so loop terminates
   }
 
   // *******************************************************************************************************************
@@ -155,9 +217,43 @@ object MyApp extends App {
   }
 
   // Operation 6
-  def mnuShowPersonalisedList(): Unit = {
-    //TODO
+
+  def mnuShowPersonalisingMenu(): Unit = {
+    // Loops personalising menu after each operation until app finishes
+    var opt = 0
+    do {
+      opt = readPersonaliseOption
+    } while (menuPersonalisedList(opt))
   }
+
+  def mnuShowPersonalisedRoutes(): Unit = {
+    if (mapPersonalisedRoutes.nonEmpty)
+      mapPersonalisedRoutes foreach { case (x, y) => println(s"$x: $y") }
+    else
+      println("Routes list is empty!")
+  }
+
+  def mnuShowAddRouteToPersList(f:(String) => Boolean): Unit = {
+    print("Route>")
+    if (f(readLine()))
+      println("Route correctly added to personalised route list!")
+    else
+      println("Incorrect route name!")
+  }
+
+  def mnuShowRemoveRouteFromPersList(f:(String) => Boolean): Unit = {
+    print("Route>")
+    if (f(readLine()))
+      println("Route correctly removed from personalised route list!")
+    else
+      println("Incorrect route name!")
+  }
+
+  def mnuShowClearRoutePersList(): Unit = {
+    mapPersonalisedRoutes = Map()
+    println("Personalised route list cleared!")
+  }
+
 
   // *******************************************************************************************************************
   // OPERATION FUNCTIONS
@@ -233,6 +329,38 @@ object MyApp extends App {
         routeDetails
       case None => ""
     }
+  }
+
+  def addRouteToPersList(route: String): Boolean = {
+    mapData.get(route) match {// Check if route exists
+      case Some(_) =>
+        mapPersonalisedRoutes.get(route) match {// Check if route is already on personalised list
+          case Some(_) =>
+            println("Route is already on the list, comment will be replaced")
+            removeRouteFromPersList(route)
+          case None =>
+        }
+
+        println("You can add a comment to the route")
+        print("Comment>")
+        val comment = readLine()
+        mapPersonalisedRoutes ++= Map(route -> comment)
+        true
+      case None => false
+    }
+  }
+
+  def removeRouteFromPersList(route: String): Boolean = {
+    mapPersonalisedRoutes.get(route) match {
+      case Some(_) =>
+        mapPersonalisedRoutes -= route
+        true
+      case None => false
+    }
+  }
+
+  def clearRoutePersList(): Unit = {
+    mapPersonalisedRoutes = Map()
   }
 
 
