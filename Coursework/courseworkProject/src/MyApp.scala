@@ -12,8 +12,8 @@ object MyApp extends App {
   val mapData = readFile("cyclingroutedata.txt")
 
   // Map of menu operations
-  val menuMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo, 3 -> handleThree, /*4 -> handleTwoFour,
-    5 -> handleFive, 6 -> handleSix, */7 -> handleSeven)
+  val menuMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo, 3 -> handleThree, 4 -> handleFour,
+    5 -> handleFive, 6 -> handleSix, 7 -> handleSeven)
 
   // Loops menu after each operation until app finishes
   var opt = 0
@@ -52,7 +52,9 @@ object MyApp extends App {
   // Prints menu
   def readOption: Int = {
     println(
-      """|Please select one of the following:
+      """
+         |****************************************************
+         |Please select one of the following:
          |  1 - get route values
          |  2 - total distance and number of stages per route
          |  3 - average total distance and number of stages
@@ -76,18 +78,37 @@ object MyApp extends App {
 
   // Handlers for menu options
   def handleOne(): Boolean = {
-    //mnuShowRouteValues()
+    //mnuShowRouteValues() // TODO
     true
   }
 
   def handleTwo(): Boolean = {
-    //print("Team>")
     mnuShowTotalDistanceAndStages(totalDistanceAndStages)
     true
   }
 
   def handleThree(): Boolean = {
     mnuShowAvgDistanceAndStages(avgDistanceAndStages)
+    true
+  }
+
+  def handleFour(): Boolean = {
+    println("ROUTES REPORT")
+    mnuShowStagesSorted(sortStagesByDistance)
+    println("SUMMARY")
+    mnuShowAvgDistanceAndStages(avgDistanceAndStages)
+    true
+  }
+
+  def handleFive(): Boolean = {
+    print("Route>")
+    mnuShowRouteDetails(getRouteDetails)
+    true
+  }
+
+  def handleSix(): Boolean = {
+    print("Routes>")
+    // TODO
     true
   }
 
@@ -110,9 +131,26 @@ object MyApp extends App {
   }
 
   // Operation 3
-  def mnuShowAvgDistanceAndStages(f:() => (Float, Float)) = { //TODO
+  def mnuShowAvgDistanceAndStages(f:() => (Float, Float)) = {
     val (avgDist, avgStages) = f()
     println(s"There is an average of ${floatPrecision(avgStages, 1)} stages and ${floatPrecision(avgDist, 2)} Km in the routes")
+  }
+
+  // Operation 4
+  def mnuShowStagesSorted(f:() => Map[String, Float]) = {
+    f() foreach {case (x,y) => println(s"$x: total distance of ${floatPrecision(y, 2)} Km")}
+  }
+
+  // Operation 5
+  def mnuShowRouteDetails(f:(String) => String) = {
+    val routeDetails = f(readLine()) //TODO display available routes and make user insert number instead of name
+
+    if (routeDetails != ("")) {
+      println(routeDetails)
+    }
+    else {
+      println("Route not found!")
+    }
   }
 
   // *******************************************************************************************************************
@@ -153,6 +191,36 @@ object MyApp extends App {
     }
 
     (totalDist/mapTotal.size, totalStages/mapTotal.size)
+  }
+
+  def sortStagesByDistance(): Map[String, Float] = {
+    var distMap: Map[String, Float] = Map()
+    mapData foreach {
+      case (k, v) =>
+        var distance: Float = 0
+
+        v foreach {
+          case (_, _, f) =>
+            distance += f
+        }
+
+        distMap = distMap ++ Map(k -> distance)
+    }
+
+    ListMap(distMap.toSeq.sortWith(_._2 > _._2):_*)
+  }
+
+  def getRouteDetails(route: String): String = {
+    mapData.get(route) match {
+      case Some(routeStages) =>
+        var routeDetails = route
+        routeStages foreach {
+          case (i, s, f) =>
+            routeDetails += s"\n   -Stage $i: $s has a distance of $f Km"
+        }
+        routeDetails
+      case None => ""
+    }
   }
 
 
