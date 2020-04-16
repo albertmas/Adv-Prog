@@ -104,7 +104,7 @@ object MyApp extends App {
 
   def handleFour(): Boolean = {
     println("ROUTES REPORT")
-    mnuShowStagesSorted(sortStagesByDistance)
+    mnuShowRoutesSorted(sortRoutesByDistance)
     println("SUMMARY")
     mnuShowAvgDistanceAndStages(avgDistanceAndStages)
     true
@@ -129,6 +129,7 @@ object MyApp extends App {
   // *******************************************************************************************************************
   // PERSONALISED LIST MENU
 
+  // Prints menu for option 6
   def readPersonaliseOption: Int = {
     println(
       """
@@ -193,7 +194,7 @@ object MyApp extends App {
   }
 
   // Operation 4
-  def mnuShowStagesSorted(f:() => Map[String, Float]): Unit = {
+  def mnuShowRoutesSorted(f:() => Map[String, Float]): Unit = {
     f() foreach {case (x,y) => println(s"$x: total distance of ${twoDecimals(y)} Km")}
   }
 
@@ -211,7 +212,7 @@ object MyApp extends App {
 
   // Operation 6
   def mnuShowPersonalisingMenu(): Unit = {
-    // Loops personalising menu after each operation until app finishes
+    // Loops personalising menu after each operation until user goes back to main menu
     var opt = 0
     do {
       opt = readPersonaliseOption
@@ -277,41 +278,42 @@ object MyApp extends App {
   def avgDistanceAndStages(): (Float, Float) = {
     var totalDist: Float = 0
     var totalStages: Float = 0
-    val mapTotal = totalDistanceAndStages()
+    val mapTotal = totalDistanceAndStages() // Instead of calculating total distances again, previous function is called
 
     mapTotal foreach {
-      case (_, (dist, stages)) =>
+      case (_, (dist, stages)) => // Route names are not necessary, so it's not assigned to a val
         totalDist += dist
         totalStages += stages
-    }
+    } // Distance and stages from different routes are all summed up
 
+    // distance and stages are divided by number of routes to get the average
     (totalDist/mapTotal.size, totalStages/mapTotal.size)
   }
 
-  def sortStagesByDistance(): Map[String, Float] = {
-    var distMap: Map[String, Float] = Map()
+  def sortRoutesByDistance(): Map[String, Float] = {
+    var distMap: Map[String, Float] = Map() // We will convert a Map[String, (Int,Sting,Float)] into Map[String, Float]
     mapData foreach {
       case (k, v) =>
         var distance: Float = 0
 
         v foreach {
-          case (_, _, f) =>
+          case (_, _, f) => // We only need the name and total distance of each route
             distance += f
         }
 
-        distMap = distMap ++ Map(k -> distance)
+        distMap = distMap ++ Map(k -> distance) // Values are added to the new map
     }
 
-    ListMap(distMap.toSeq.sortWith(_._2 > _._2):_*)
+    ListMap(distMap.toSeq.sortWith(_._2 > _._2):_*) // New map is ordered by descending distance
   }
 
   def getRouteDetails(route: String): String = {
     mapData.get(route) match {
       case Some(routeStages) =>
-        var routeDetails = route
+        var routeDetails = route // First line of the paragraph will be the route name
         routeStages foreach {
           case (i, s, f) =>
-            routeDetails += s"\n   -Stage $i: $s has a distance of $f Km"
+            routeDetails += s"\n   -Stage $i: $s has a distance of $f Km" // Each stage is added after the previous one
         }
         routeDetails
       case None => ""
@@ -322,38 +324,38 @@ object MyApp extends App {
     mapData.get(route) match {// Check if route exists
       case Some(_) =>
         mapPersonalisedRoutes.get(route) match {// Check if route is already on personalised list
-          case Some(_) =>
+          case Some(_) => // If it is, user is warned that the comment will be overwritten
             println("Route is already on the list, comment will be replaced")
-            removeRouteFromPersList(route)
+            removeRouteFromPersList(route) // Previous route is removed so that it can be readded with the new comment
           case None =>
         }
 
         println("You can add a comment to the route")
         print("Comment>")
         val comment = readLine()
-        mapPersonalisedRoutes ++= Map(route -> comment)
+        mapPersonalisedRoutes ++= Map(route -> comment) // New personalised route is added to the list (actually a map)
         true
-      case None => false
+      case None => false // If route does not exist, false is returned and calling function warns user
     }
   }
 
   def removeRouteFromPersList(route: String): Boolean = {
     mapPersonalisedRoutes.get(route) match {
-      case Some(_) =>
+      case Some(_) => // If route is in the personalised list, it is removed
         mapPersonalisedRoutes -= route
         true
-      case None => false
+      case None => false // Otherwise, false is returned and calling function warns user
     }
   }
 
   def clearRoutePersList(): Unit = {
-    mapPersonalisedRoutes = Map()
+    mapPersonalisedRoutes = Map() // Personalised list (actually a map) is cleared
     println("Personalised route list cleared!")
   }
 
 
   // Useful functions
-  def floatPrecision(f: Float, p: Int): Float = {
+  def floatPrecision(f: Float, p: Int): Float = { // Rounds down float to specified decimal length
     BigDecimal(f).setScale(p, BigDecimal.RoundingMode.HALF_DOWN).toFloat
   }
 }
