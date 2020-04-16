@@ -16,6 +16,10 @@ object MyApp extends App {
   val persListMenuMap = Map[Int, () => Boolean](1 -> handlePersOne, 2 -> handlePersTwo,
     3 -> handlePersThree, 4 -> handlePersFour, 5 -> handlePersFive)
 
+  // Useful partial function applications
+  val oneDecimal = floatPrecision(_, 1)
+  val twoDecimals = floatPrecision(_, 2)
+
   // Map of main menu operations
   val menuMap = Map[Int, () => Boolean](1 -> handleOne, 2 -> handleTwo, 3 -> handleThree, 4 -> handleFour,
     5 -> handleFive, 6 -> handleSix, 7 -> handleSeven)
@@ -60,7 +64,7 @@ object MyApp extends App {
       """
          |****************************************************
          |Please select one of the following:
-         |  1 - get route values
+         |  1 - get all route values
          |  2 - total distance and number of stages per route
          |  3 - average total distance and number of stages
          |  4 - routes report
@@ -179,18 +183,18 @@ object MyApp extends App {
 
   // Operation 2
   def mnuShowTotalDistanceAndStages(f:() => Map[String, (Float, Int)]): Unit = {
-    f() foreach {case (x,y) => println(s"$x has ${y._2} stages and a total distance of ${floatPrecision(y._1, 2)} Km")}
+    f() foreach {case (x,y) => println(s"$x has ${y._2} stages and a total distance of ${twoDecimals(y._1)} Km")}
   }
 
   // Operation 3
   def mnuShowAvgDistanceAndStages(f:() => (Float, Float)): Unit = {
     val (avgDist, avgStages) = f()
-    println(s"There is an average of ${floatPrecision(avgStages, 1)} stages and ${floatPrecision(avgDist, 2)} Km in the routes")
+    println(s"There is an average of ${oneDecimal(avgStages)} stages and ${twoDecimals(avgDist)} Km in the routes")
   }
 
   // Operation 4
   def mnuShowStagesSorted(f:() => Map[String, Float]): Unit = {
-    f() foreach {case (x,y) => println(s"$x: total distance of ${floatPrecision(y, 2)} Km")}
+    f() foreach {case (x,y) => println(s"$x: total distance of ${twoDecimals(y)} Km")}
   }
 
   // Operation 5
@@ -244,7 +248,7 @@ object MyApp extends App {
   def routeValues(): List[String] = {
     var routesList: ListBuffer[String] = ListBuffer()
     mapData foreach {
-      case (k, v) =>
+      case (k, _) =>
         routesList += getRouteDetails(k)
     }
 
@@ -259,7 +263,7 @@ object MyApp extends App {
         var stages: Int = 0
 
         v foreach {
-          case (i, s, f) =>
+          case (_, _, f) =>
             distance += f
             stages += 1
         }
